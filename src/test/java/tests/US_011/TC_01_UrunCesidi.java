@@ -1,19 +1,19 @@
 package tests.US_011;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.TradylinnPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TC_01_UrunCesidi {
@@ -22,6 +22,7 @@ public class TC_01_UrunCesidi {
 
     @Test
     public void deneme() throws InterruptedException {
+        WebDriverWait wait =new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
 
         Driver.getDriver().get(ConfigReader.getProperty("trUrl"));
         Thread.sleep(5);
@@ -33,7 +34,7 @@ public class TC_01_UrunCesidi {
         trdPage.hesabım.click();
         Thread.sleep(10000);
         trdPage.storeManager.click();
-        Thread.sleep(5000);
+       wait.until(ExpectedConditions.visibilityOf(trdPage.urun));
         trdPage.urun.click();
         Thread.sleep(5000);
         trdPage.yeniEkle.click();
@@ -42,10 +43,13 @@ public class TC_01_UrunCesidi {
         jse.executeScript("arguments[0].click();",trdPage.toptanUrunGosterme );
         Thread.sleep(5000);
 
+        int idx=0;
+        List<String> excPieceTypeDDM= Arrays.asList("-Select-","Piece","Carton","Kg");
         Select select=new Select(trdPage.pieceTypeDDM);
         List<WebElement> pieceTypeOptions= select.getOptions();
         for (WebElement w:pieceTypeOptions){
-            System.out.println(w.getText());
+            Assert.assertEquals(excPieceTypeDDM.get(idx),w.getText());
+            idx++;
         }
 
 
