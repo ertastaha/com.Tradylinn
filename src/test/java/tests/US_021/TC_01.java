@@ -1,9 +1,7 @@
 package tests.US_021;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RaporlarPage;
@@ -11,50 +9,49 @@ import pages.TradylinnPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
-
-import java.io.File;
+import utilities.TestBaseRapor;
 import java.io.IOException;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-public class TC_01 {
-    TradylinnPage trdPage=new TradylinnPage();
-    RaporlarPage raporPage=new RaporlarPage();
+
+public class TC_01 extends TestBaseRapor {
+    TradylinnPage trdPage = new TradylinnPage();
+    RaporlarPage raporPage = new RaporlarPage();
+
     @Test
     public void test() throws InterruptedException, IOException {
+        extentTest = extentReports.createTest("Pozitif Login", "Geçerli Username ve Password İle Giriş Yapabılabilmeli");
         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
         Driver.getDriver().get(ConfigReader.getProperty("trUrl"));
+        extentTest.info("Tradylinn Anasayfaya Gidildi.");
         Thread.sleep(5000);
-        jse.executeScript("arguments[0].click();",trdPage.girisYap);
+        jse.executeScript("arguments[0].click();", trdPage.girisYap);
         trdPage.kullanıcıAdıBox.sendKeys(ConfigReader.getProperty("validUserName"));
         trdPage.parolaBox.sendKeys(ConfigReader.getProperty("validPassword"));
         trdPage.girisİkiButonu.click();
+        extentTest.info("Başarılı Giriş Yapıldı.");
         Thread.sleep(10000);
         jse.executeScript("arguments[0].click();", trdPage.hesabım);
         Thread.sleep(10000);
         jse.executeScript("arguments[0].click();", trdPage.storeManager);
         Thread.sleep(10000);
-
+        extentTest.info("Store Manager Sayfasına Geçildi.");
         jse.executeScript("arguments[0].click();", raporPage.raporlar);
         Thread.sleep(10000);
+        extentTest.info("Raporlar Sayfasına Geçildi.");
 
         jse.executeScript("arguments[0].click();", raporPage.yearRapor);
         Thread.sleep(10000);
-        jse.executeScript("arguments[0].scrollIntoView(true);",raporPage.raporTitle);
-        String expRaporTitle="Sales by Date - Year";
-        String actRaporTitle=raporPage.raporTitle.getText();
+        extentTest.info("Year Sekmesine Tıklandı.");
+        jse.executeScript("arguments[0].scrollIntoView(true);", raporPage.raporTitle);
+        String expRaporTitle = "Sales by Date - Year";
+        String actRaporTitle = raporPage.raporTitle.getText();
 
-        Assert.assertEquals(expRaporTitle,actRaporTitle);
+        Assert.assertEquals(expRaporTitle, actRaporTitle);
+        extentTest.info("İlgili Tarih Aralığı Olduğu Teyit Edildi.");
 
-        jse.executeScript("arguments[0].scrollIntoView(true);",raporPage.chart);
+        jse.executeScript("arguments[0].scrollIntoView(true);", raporPage.chart);
         ReusableMethods.getScreenshot("Year");
-
-
-
-
-
-
+        extentTest.info("Ekran Görüntüsü Alındı.");
 
 
 /*
@@ -79,9 +76,6 @@ public class TC_01 {
         ReusableMethods.getScreenshot("customDate");
 
 */
-
-
-
 
     }
 }

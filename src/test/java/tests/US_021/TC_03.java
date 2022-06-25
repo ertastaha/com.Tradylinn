@@ -8,42 +8,50 @@ import pages.TradylinnPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
+import utilities.TestBaseRapor;
 
 import java.io.IOException;
 
-public class TC_03 {
+public class TC_03 extends TestBaseRapor {
 
     TradylinnPage trdPage=new TradylinnPage();
     RaporlarPage raporPage=new RaporlarPage();
     @Test
     public void thisMonthRapor() throws InterruptedException, IOException {
+        extentTest = extentReports.createTest("Pozitif Login", "Geçerli Username ve Password İle Giriş Yapabılabilmeli");
         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
         Driver.getDriver().get(ConfigReader.getProperty("trUrl"));
+        extentTest.info("Tradylinn Anasayfaya Gidildi.");
         Thread.sleep(5000);
         jse.executeScript("arguments[0].click();",trdPage.girisYap);
         trdPage.kullanıcıAdıBox.sendKeys(ConfigReader.getProperty("validUserName"));
         trdPage.parolaBox.sendKeys(ConfigReader.getProperty("validPassword"));
         trdPage.girisİkiButonu.click();
+        extentTest.info("Başarılı Giriş Yapıldı.");
         Thread.sleep(10000);
         jse.executeScript("arguments[0].click();", trdPage.hesabım);
         Thread.sleep(10000);
         jse.executeScript("arguments[0].click();", trdPage.storeManager);
         Thread.sleep(10000);
+        extentTest.info("Store Manager Sayfasına Geçildi.");
 
         jse.executeScript("arguments[0].click();", raporPage.raporlar);
         Thread.sleep(10000);
+        extentTest.info("Raporlar Sayfasına Geçildi.");
 
         jse.executeScript("arguments[0].click();", raporPage.thisMonthRapor);
         Thread.sleep(10000);
+        extentTest.info("This Month Sekmesine Tıklandı.");
 
-        Thread.sleep(10000);
         jse.executeScript("arguments[0].scrollIntoView(true);",raporPage.raporTitle);
         String expRaporTitle="Sales by Date - This Month";
         String actRaporTitle=raporPage.raporTitle.getText();
 
         Assert.assertEquals(expRaporTitle,actRaporTitle);
+        extentTest.info("İlgili Tarih Aralığı Olduğu Teyit Edildi.");
 
         jse.executeScript("arguments[0].scrollIntoView(true);",raporPage.chart);
         ReusableMethods.getScreenshot("ThisMonth");
+        extentTest.info("Ekran Görüntüsü Alındı.");
     }
 }
