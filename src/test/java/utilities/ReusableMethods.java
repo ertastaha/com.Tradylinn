@@ -33,6 +33,8 @@ public class ReusableMethods {
         FileUtils.copyFile(source, finalDestination);
         return target;
     }
+
+
     //========Switching Window=====//
     public static void switchToWindow(String targetTitle) {
         String origin = Driver.getDriver().getWindowHandle();
@@ -134,5 +136,14 @@ public class ReusableMethods {
         });
         return element;
     }
+
+    //Set the value of the an input using js executor text 5/29/2020
+    public static void setValueByJS(WebElement element, String text){
+        JavascriptExecutor js= (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].setAttribute('value','"+text+"')",element);
+
+    }
+
+
 
 }

@@ -22,7 +22,7 @@ public class TC_01_UrunCesidi {
 
     @Test
     public void deneme() throws InterruptedException {
-        WebDriverWait wait =new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+        WebDriverWait wait =new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
 
         Driver.getDriver().get(ConfigReader.getProperty("trUrl"));
         Thread.sleep(5);
@@ -34,12 +34,14 @@ public class TC_01_UrunCesidi {
         trdPage.hesabım.click();
         Thread.sleep(10000);
         trdPage.storeManager.click();
-       wait.until(ExpectedConditions.visibilityOf(trdPage.urun));
+        Thread.sleep(10000);
+        JavascriptExecutor jse= (JavascriptExecutor) Driver.getDriver();
+       // jse.executeScript("arguments[0].scrollIntoView(true)", trdPage.emir);
         trdPage.urun.click();
         Thread.sleep(5000);
         trdPage.yeniEkle.click();
         Thread.sleep(5000);
-        JavascriptExecutor jse= (JavascriptExecutor) Driver.getDriver();
+
         jse.executeScript("arguments[0].click();",trdPage.toptanUrunGosterme );
         Thread.sleep(5000);
 

@@ -35,6 +35,9 @@ public class TradylinnPage {
     @FindBy(xpath= "(//span[@class='text'])[4]")
     public WebElement urun;
 
+    @FindBy(xpath= "//div[@class='wcfm_menu_items wcfm_menu_wcfm-orders']")
+    public WebElement emir;
+
     @FindBy(xpath = "//a[@id='add_new_product_dashboard']")
     public WebElement yeniEkle;
 
@@ -62,7 +65,10 @@ public class TradylinnPage {
   //  @FindBy(xpath = "(//li[@data-id='4303'])[1]")
   //  @FindBy(xpath = "//div[@class='attachment-preview js--select-attachment type-image subtype-jpeg portrait']")
   //  @FindBy(xpath = "(//span[@class='media-modal-icon'])[3]")
-    @FindBy(xpath = "(//div[@class='attachment-preview js--select-attachment type-image subtype-png portrait'])[2]")
+  //  @FindBy(xpath = "(//div[@class='attachment-preview js--select-attachment type-image subtype-png portrait'])[2]")
+  //  @FindBy(xpath = "//li[@aria-label='293ac7db-733d-4b43-b5d4-1d4f626d9435']//div[@class='thumbnail']//img")
+  //  @FindBy(xpath = "(//li[@tabindex='0']//div[@class='attachment-preview js--select-attachment type-image subtype-jpeg portrait'])[1]")
+    @FindBy(xpath = "//ul[@id='__attachments-view-214']//li[1]")
     public WebElement kucukResimUrunSec;
 
     @FindBy(xpath = "(//button[@class='button media-button button-primary button-large media-button-select'])[1]")

@@ -31,5 +31,8 @@ public class RaporlarPage {
     @FindBy(xpath="//input[@placeholder='Choose Date Range ...']")
     public WebElement customRapor;
 
+    @FindBy(xpath="//span[@class='wcfm-page-heading-text']")
+    public WebElement raporTitle;
+
 
 }
