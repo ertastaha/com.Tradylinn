@@ -47,6 +47,12 @@ public class TradylinnPage {
     @FindBy(xpath = "//select[@name='acf[piecetype]']")
     public WebElement pieceTypeDDM;
 
+    @FindBy(xpath = "//input[@id='unitpercart']")
+    public WebElement unitPerPiece;
+
+    @FindBy(xpath = "//input[@id='minorderqtytr']")
+    public WebElement minOrderQuantity;
+
     @FindBy(xpath = "//img[@id='featured_img_display']")
     public WebElement buyukResimEkle;
 
@@ -62,16 +68,20 @@ public class TradylinnPage {
     @FindBy(xpath = "//img[@id='gallery_img_gimage_0_display']")
     public WebElement kucukResimEkle;
 
+
+    // WebElement seciliurun2 = driver.findElement(By.xpath("(//div[@class='attachment-preview js--select-attachment type-image subtype-jpeg portrait'])[20]"));
+    //executor.executeScript("arguments[0].click();", seciliurun2);
   //  @FindBy(xpath = "(//li[@data-id='4303'])[1]")
   //  @FindBy(xpath = "//div[@class='attachment-preview js--select-attachment type-image subtype-jpeg portrait']")
   //  @FindBy(xpath = "(//span[@class='media-modal-icon'])[3]")
   //  @FindBy(xpath = "(//div[@class='attachment-preview js--select-attachment type-image subtype-png portrait'])[2]")
   //  @FindBy(xpath = "//li[@aria-label='293ac7db-733d-4b43-b5d4-1d4f626d9435']//div[@class='thumbnail']//img")
-  //  @FindBy(xpath = "(//li[@tabindex='0']//div[@class='attachment-preview js--select-attachment type-image subtype-jpeg portrait'])[1]")
-    @FindBy(xpath = "//ul[@id='__attachments-view-214']//li[1]")
+ //   @FindBy(xpath = "//ul[@id='__attachments-view-214']//li[1]")
+    @FindBy (xpath = "(//div[@class='thumbnail'])[2]")
     public WebElement kucukResimUrunSec;
 
-    @FindBy(xpath = "(//button[@class='button media-button button-primary button-large media-button-select'])[1]")
+   // @FindBy(xpath = "(//button[@class='button media-button button-primary button-large media-button-select'])[1]")
+    @FindBy (xpath = "(//*[text()='Add to Gallery'])[3]")
     public WebElement addToGallery;
 
 
@@ -87,6 +97,26 @@ public class TradylinnPage {
 
     @FindBy(xpath = "//input[@name='submit-data']")
     public WebElement urunSubmit;
+
+
+
+    @FindBy (xpath = "//img[@id='featured_img_display']")
+    public WebElement featuredImgButton;
+
+    @FindBy(xpath = "//*[text()='Dosya seçin']")
+    public WebElement dosyaSeçButton;
+
+    @FindBy (xpath = "//button[@class='button media-button button-primary button-large media-button-select']")
+    public WebElement fotoSecButton;
+
+    @FindBy (xpath = "//img[@id='gallery_img_gimage_0_display']")
+    public WebElement galleryImgButton;
+
+    @FindBy (xpath = "(//div[@class='thumbnail'])[2]")
+    public WebElement galleryImgFotosu;
+
+    @FindBy (xpath = "(//*[text()='Add to Gallery'])[3]")
+    public WebElement addToGalleryButton;
 
 
 

@@ -9,11 +9,11 @@ import pages.TradylinnPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
-import utilities.TestBaseRapor;
+import utilities.TestBaseReport;
 
 import java.io.IOException;
 
-public class TC_05 extends TestBaseRapor {
+public class TC_05 extends TestBaseReport {
     TradylinnPage trdPage = new TradylinnPage();
     RaporlarPage raporPage = new RaporlarPage();
 
